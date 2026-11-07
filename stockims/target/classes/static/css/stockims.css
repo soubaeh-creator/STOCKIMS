@@ -1,0 +1,424 @@
+/* StockIMS - identité "atelier textile" : bleu nuit, beige clair, accent cuivre */
+
+:root {
+  --nuit: #14213d;
+  --nuit-clair: #1f3158;
+  --beige: #f6f0e4;
+  --beige-fonce: #ece2cf;
+  --papier: #fffdf8;
+  --cuivre: #b8733a;
+  --cuivre-fonce: #9a5a28;
+  --texte: #1c2333;
+  --gris: #5b6475;
+
+  --ok: #1f6a47;
+  --ok-fond: #e3f2ea;
+  --faible: #7a4f00;
+  --faible-fond: #fff1cf;
+  --erreur: #a4262c;
+  --erreur-fond: #fde8e6;
+
+  --rayon: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  line-height: 1.5;
+  color: var(--texte);
+  background-color: var(--beige);
+  /* fin tissage : quadrillage très discret */
+  background-image:
+    repeating-linear-gradient(0deg, rgba(20, 33, 61, 0.03) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(90deg, rgba(20, 33, 61, 0.03) 0 1px, transparent 1px 6px);
+}
+
+h1, h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--nuit);
+  line-height: 1.2;
+}
+
+h1 { margin: 0; font-size: 1.9rem; }
+h2 { margin: 0 0 1rem; font-size: 1.25rem; }
+
+a { color: var(--cuivre-fonce); }
+
+/* ---------- En-tête et navigation ---------- */
+
+.entete {
+  background: var(--nuit);
+  color: var(--beige);
+  border-bottom: 4px dashed var(--cuivre); /* la "couture" */
+}
+
+.entete-contenu {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1.5rem;
+}
+
+.marque {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--beige);
+  text-decoration: none;
+}
+
+/* petite bobine de fil dessinée en CSS */
+.marque-bobine {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--cuivre);
+  border: 3px dashed var(--beige);
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.menu a {
+  color: var(--beige);
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.menu a:hover {
+  border-color: var(--cuivre);
+}
+
+.menu a.actif {
+  background: var(--cuivre-fonce);
+  color: #fff;
+}
+
+/* ---------- Page ---------- */
+
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+.page-titre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.sous-titre {
+  margin: 0.3rem 0 0;
+  color: var(--gris);
+}
+
+.carte {
+  background: var(--papier);
+  border: 1px solid var(--beige-fonce);
+  border-radius: var(--rayon);
+  padding: 1.2rem;
+  box-shadow: 0 2px 6px rgba(20, 33, 61, 0.08);
+}
+
+.pied {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: var(--beige);
+  background: var(--nuit);
+  border-top: 4px dashed var(--cuivre);
+}
+
+/* ---------- Boutons ---------- */
+
+.bouton {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  border: 2px solid var(--cuivre-fonce);
+  border-radius: 8px;
+  background: var(--cuivre-fonce);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bouton:hover { background: var(--cuivre); border-color: var(--cuivre); }
+
+.bouton-nuit {
+  background: var(--nuit);
+  border-color: var(--nuit);
+}
+
+.bouton-nuit:hover { background: var(--nuit-clair); border-color: var(--nuit-clair); }
+
+.bouton-contour {
+  background: transparent;
+  color: var(--nuit);
+  border-color: var(--nuit);
+}
+
+.bouton-contour:hover { background: var(--beige-fonce); border-color: var(--nuit); }
+
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--cuivre);
+  outline-offset: 2px;
+}
+
+/* ---------- Messages distincts ---------- */
+
+.message {
+  margin: 0 0 1rem;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border-left: 6px solid;
+  font-weight: 600;
+}
+
+.message-succes {
+  background: var(--ok-fond);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+.message-erreur {
+  background: var(--erreur-fond);
+  border-color: var(--erreur);
+  color: var(--erreur);
+}
+
+.message p { margin: 0; }
+
+.erreur-champ {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--erreur);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.erreur-champ::before { content: "\2716\00a0"; }
+.erreur-champ:empty { display: none; }
+
+/* ---------- Formulaires ---------- */
+
+.formulaire { max-width: 32rem; }
+
+.champ { margin-bottom: 1.1rem; }
+
+.champ label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: var(--nuit);
+}
+
+.champ input {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  font: inherit;
+  color: var(--texte);
+  background: #fff;
+  border: 2px solid #b9bfcc;
+  border-radius: 8px;
+}
+
+.champ input:focus { border-color: var(--cuivre); }
+
+.champ input.champ-invalide {
+  border-color: var(--erreur);
+  background: #fff7f6;
+}
+
+.aide {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  color: var(--gris);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 0.4rem;
+}
+
+/* ---------- Accueil ---------- */
+
+.accueil-intro { max-width: 40rem; }
+
+.accueil-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+/* ---------- Liste des articles ---------- */
+
+.table-wrap {
+  overflow-x: auto;
+  background: var(--papier);
+  border: 1px solid var(--beige-fonce);
+  border-radius: var(--rayon);
+  box-shadow: 0 2px 6px rgba(20, 33, 61, 0.08);
+}
+
+.tableau {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableau th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: var(--nuit);
+  color: var(--beige);
+  white-space: nowrap;
+}
+
+.tableau td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--beige-fonce);
+}
+
+.tableau tbody tr:nth-child(even) { background: #faf5ea; }
+.tableau tbody tr:hover { background: #f3e7d2; }
+
+.reference {
+  font-family: Consolas, "Courier New", monospace;
+  font-weight: bold;
+  color: var(--nuit);
+}
+
+.lien-stock {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border: 2px solid var(--cuivre-fonce);
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--cuivre-fonce);
+}
+
+.lien-stock:hover { background: var(--cuivre-fonce); color: #fff; }
+
+.vide {
+  padding: 1rem;
+  text-align: center;
+  color: var(--gris);
+  font-style: italic;
+}
+
+/* ---------- Fiche stock ---------- */
+
+.fiche {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+
+.fiche > .carte { flex: 1 1 18rem; }
+
+.indicateur {
+  text-align: center;
+  border: 3px solid;
+  border-radius: var(--rayon);
+  padding: 1rem;
+}
+
+.indicateur-titre {
+  display: block;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.85rem;
+}
+
+.indicateur-valeur {
+  display: block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 4rem;
+  line-height: 1.1;
+}
+
+.indicateur-etat {
+  display: inline-block;
+  margin-top: 0.3rem;
+  padding: 0.15rem 0.8rem;
+  border-radius: 999px;
+  background: #fff;
+  font-weight: 700;
+}
+
+.stock-ok      { background: var(--ok-fond);      border-color: var(--ok);      color: var(--ok); }
+.stock-faible  { background: var(--faible-fond);  border-color: var(--faible);  color: var(--faible); }
+.stock-rupture { background: var(--erreur-fond);  border-color: var(--erreur);  color: var(--erreur); }
+
+.reference-fiche { margin: 0.3rem 0 1rem; color: var(--gris); }
+
+/* ---------- Petits écrans : le tableau devient une liste de cartes ---------- */
+
+@media (max-width: 640px) {
+  h1 { font-size: 1.5rem; }
+
+  .tableau thead {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .tableau, .tableau tbody, .tableau tr, .tableau td { display: block; }
+
+  .tableau tr {
+    margin: 0.8rem;
+    border: 1px solid var(--beige-fonce);
+    border-radius: 8px;
+    background: var(--papier);
+  }
+
+  .tableau tbody tr:nth-child(even) { background: var(--papier); }
+
+  .tableau td {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px dashed var(--beige-fonce);
+  }
+
+  .tableau td:last-child { border-bottom: 0; }
+
+  .tableau td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--nuit);
+  }
+
+  .actions .bouton { flex: 1 1 100%; text-align: center; }
+}

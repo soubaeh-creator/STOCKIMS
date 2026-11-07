@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: tete('Articles')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: navigation('articles')}"></header>
+
+<main class="page">
+  <div class="page-titre">
+    <div>
+      <h1>Les articles</h1>
+      <p class="sous-titre">Choisissez un article pour consulter son stock.</p>
+    </div>
+    <a class="bouton" th:href="@{/articles/nouveau}">Ajouter un article</a>
+  </div>
+
+  <div class="message message-succes" role="status"
+       th:if="${succes}" th:text="${succes}">Article ajouté.</div>
+
+  <!-- Filtre : invisible sans JavaScript, affiché par stockims.js -->
+  <div class="champ formulaire" id="zone-filtre" hidden>
+    <label for="filtre">Filtrer par référence ou désignation</label>
+    <input id="filtre" type="search" autocomplete="off"
+           placeholder="Exemple : TIS ou coton">
+    <p class="aide" id="compteur-filtre" aria-live="polite"></p>
+  </div>
+
+  <div class="table-wrap">
+    <table class="tableau" id="tableau-articles">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Référence</th>
+          <th>Désignation</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="a : ${articles}">
+          <td data-label="ID" th:text="${a.id}">1</td>
+          <td data-label="Référence" class="reference" th:text="${a.reference}">TIS-001</td>
+          <td data-label="Désignation" th:text="${a.designation}">Rouleau de coton</td>
+          <td data-label="Stock">
+            <a class="lien-stock" th:href="@{/stock/{id}(id=${a.id})}">Voir le stock</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="vide" th:if="${#lists.isEmpty(articles)}">Aucun article.</p>
+    <p class="vide" id="aucun-resultat" hidden>Aucun article ne correspond au filtre.</p>
+  </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: pied}"></footer>
+<script th:src="@{/js/stockims.js}" defer></script>
+</body>
+</html>

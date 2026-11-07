@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: entete('Erreur')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: navbar('')}"></header>
+
+<main class="conteneur conteneur-etroit">
+    <section class="carte carte-erreur">
+        <p class="code-erreur" th:text="${status}">500</p>
+        <h1 th:text="${status == 404} ? 'Page ou article introuvable' : 'Une erreur est survenue'">Une erreur est survenue</h1>
+        <p class="sous-titre" th:text="${status == 404}
+            ? 'La ressource demandée n’existe pas (ou plus).'
+            : 'Le serveur n’a pas pu traiter votre demande. Réessayez ou revenez au tableau de bord.'">Détail</p>
+        <a class="bouton" th:href="@{/}">Retour au tableau de bord</a>
+    </section>
+</main>
+
+<footer th:replace="~{fragments/layout :: pied}"></footer>
+</body>
+</html>

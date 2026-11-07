@@ -1,0 +1,16 @@
+ma\esith\stockims\AccueilController.class
+ma\esith\stockims\web\StockController.class
+ma\esith\stockims\web\ArticleForm.class
+ma\esith\stockims\MessageAccueil.class
+ma\esith\stockims\web\MouvementForm.class
+ma\esith\stockims\model\MouvementStock.class
+ma\esith\stockims\web\ArticleController.class
+ma\esith\stockims\model\Article.class
+ma\esith\stockims\model\Entree.class
+ma\esith\stockims\StockimsApplication.class
+ma\esith\stockims\model\Sortie.class
+ma\esith\stockims\service\StockService.class
+ma\esith\stockims\repository\ArticleRepository.class
+ma\esith\stockims\repository\SortieRepository.class
+ma\esith\stockims\repository\EntreeRepository.class
+ma\esith\stockims\service\ArticleService.class

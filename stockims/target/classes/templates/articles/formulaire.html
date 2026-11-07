@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: tete('Nouvel article')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: navigation('nouveau')}"></header>
+
+<main class="page">
+  <div class="page-titre">
+    <h1>Nouvel article</h1>
+  </div>
+
+  <div class="carte formulaire">
+    <form th:action="@{/articles}" th:object="${article}" method="post">
+
+      <div class="message message-erreur" role="alert"
+           th:if="${#fields.hasGlobalErrors()}">
+        <p th:each="erreur : ${#fields.globalErrors()}" th:text="${erreur}">Erreur</p>
+      </div>
+
+      <div class="champ">
+        <label for="reference">Référence</label>
+        <input id="reference" th:field="*{reference}" th:errorclass="champ-invalide"
+               placeholder="Exemple : TIS-001" autocomplete="off">
+        <span class="erreur-champ" th:errors="*{reference}"></span>
+        <p class="aide">20 caractères au maximum. Elle doit être unique.</p>
+      </div>
+
+      <div class="champ">
+        <label for="designation">Désignation</label>
+        <input id="designation" th:field="*{designation}" th:errorclass="champ-invalide"
+               placeholder="Exemple : Rouleau de coton" autocomplete="off">
+        <span class="erreur-champ" th:errors="*{designation}"></span>
+        <p class="aide">80 caractères au maximum.</p>
+      </div>
+
+      <div class="actions">
+        <button class="bouton" type="submit">Enregistrer</button>
+        <a class="bouton bouton-contour" th:href="@{/articles}">Retour à la liste</a>
+      </div>
+    </form>
+  </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: pied}"></footer>
+</body>
+</html>

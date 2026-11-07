@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: tete('Accueil')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: navigation('accueil')}"></header>
+
+<main class="page">
+  <div class="carte accueil-intro">
+    <h1 th:text="${message}">Bienvenue</h1>
+    <p class="sous-titre">Gestion des articles, des entrées et des sorties.</p>
+    <div class="accueil-actions">
+      <a class="bouton" th:href="@{/articles}">Voir les articles</a>
+      <a class="bouton bouton-contour" th:href="@{/articles/nouveau}">Ajouter un article</a>
+    </div>
+  </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: pied}"></footer>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="tete(titre)">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="'StockIMS - ' + ${titre}">StockIMS</title>
+<link rel="stylesheet" th:href="@{/css/stockims.css}">
+</head>
+<body>
+
+<header class="entete" th:fragment="navigation(actif)">
+  <div class="entete-contenu">
+    <a class="marque" th:href="@{/}">
+      <span class="marque-bobine" aria-hidden="true"></span>
+      StockIMS
+    </a>
+    <nav class="menu" aria-label="Navigation principale">
+      <a th:href="@{/}" th:classappend="${actif == 'accueil'} ? 'actif'">Accueil</a>
+      <a th:href="@{/articles}" th:classappend="${actif == 'articles'} ? 'actif'">Articles</a>
+      <a th:href="@{/articles/nouveau}" th:classappend="${actif == 'nouveau'} ? 'actif'">Nouvel article</a>
+    </nav>
+  </div>
+</header>
+
+<footer class="pied" th:fragment="pied">
+  StockIMS · ESITH IMS 2e année · Atelier de gestion de stock
+</footer>
+
+</body>
+</html>

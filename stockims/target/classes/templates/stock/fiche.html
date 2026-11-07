@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: tete('Stock')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: navigation('articles')}"></header>
+
+<main class="page">
+  <div class="page-titre">
+    <div>
+      <h1 th:text="${article.designation}">Article</h1>
+      <p class="reference-fiche">Référence : <span class="reference" th:text="${article.reference}">TIS-001</span></p>
+    </div>
+    <a class="bouton bouton-contour" th:href="@{/articles}">Retour aux articles</a>
+  </div>
+
+  <div class="message message-succes" role="status"
+       th:if="${succes}" th:text="${succes}">Mouvement enregistré.</div>
+
+  <div class="fiche">
+
+    <section class="indicateur"
+             th:classappend="${stock == 0} ? 'stock-rupture' : (${stock lt 10} ? 'stock-faible' : 'stock-ok')">
+      <span class="indicateur-titre">Stock disponible</span>
+      <strong class="indicateur-valeur" th:text="${stock}">0</strong>
+      <span class="indicateur-etat"
+            th:text="${stock == 0} ? 'En rupture' : (${stock lt 10} ? 'Stock faible' : 'En stock')">En stock</span>
+    </section>
+
+    <section class="carte">
+      <h2>Enregistrer un mouvement</h2>
+      <form method="post" th:object="${mouvement}"
+            th:action="@{/stock/{id}/entrees(id=${article.id})}">
+
+        <div class="message message-erreur" role="alert"
+             th:if="${#fields.hasGlobalErrors()}">
+          <p th:each="erreur : ${#fields.globalErrors()}" th:text="${erreur}">Erreur</p>
+        </div>
+
+        <div class="champ">
+          <label for="quantite">Quantité</label>
+          <input type="number" step="1" inputmode="numeric"
+                 th:field="*{quantite}" th:errorclass="champ-invalide">
+          <span class="erreur-champ" th:errors="*{quantite}"></span>
+          <p class="aide">Nombre entier positif. La date du jour sera enregistrée.</p>
+        </div>
+
+        <div class="actions">
+          <button class="bouton bouton-nuit" type="submit">Enregistrer une entrée</button>
+          <button class="bouton" type="submit"
+                  th:formaction="@{/stock/{id}/sorties(id=${article.id})}">
+            Enregistrer une sortie
+          </button>
+        </div>
+      </form>
+    </section>
+
+  </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: pied}"></footer>
+</body>
+</html>
